@@ -2,125 +2,201 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>عــ𓄌ـمر الفرجانى | Fergany</title>
+  <title>عمر الفرجانى</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
   <style>
-    body, html {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
       font-family: 'Cairo', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
       overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background: #121212;
+      color: #ddd;
+    }
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: #0f2027;
-      color: #fff;
-      text-align: center;
-    }
-    #particles-js {position: fixed; width: 100%; height: 100%; z-index: -1;}
-    .wave {position: absolute; bottom: 0; width: 100%; height: 120px;}
-    .wave svg {width: 100%; height: 100%; display: block;}
-    .typing {
-      font-size: 40px;
-      color: #00ccff;
-      margin: 50px 0 20px;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 4px solid #00ccff;
-      animation: typing 4s steps(30, end) infinite alternate, blink-caret .75s step-end infinite;
-    }
-    @keyframes typing {
-      from {width: 0}
-      to {width: 50%}
-    }
-    @keyframes blink-caret {
-      50% {border-color: transparent}
-    }
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 20px;
-      border-radius: 50px;
-      font-size: 18px;
-      color: #fff;
-      text-decoration: none;
-      transition: 0.3s;
-      background: #222;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .btn:hover {transform: scale(1.05);}
-    .custom-cursor {
-      position: fixed;
-      top: 0; left: 0;
-      width: 20px; height: 20px;
-      border: 2px solid #00ccff;
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 10000;
-    }
-    .scroll-indicator {
-      position: fixed;
-      top: 0; left: 0;
-      height: 5px;
-      background: #00ccff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       z-index: 9999;
     }
-    #toTop {
-      position: fixed;
-      bottom: 30px;
-      right: 20px;
+    .spinner {
+      border: 5px solid #444;
+      border-top: 5px solid #00ccff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    h1 {
+      font-size: 40px;
+      margin: 30px 0;
+      animation: typing 3s steps(20) infinite alternate;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #00ccff;
+      width: 16ch;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 16ch; }
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+    }
+    .social-icons a {
+      font-size: 25px;
+      color: #fff;
+      background: #222;
+      padding: 12px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    .social-icons a:hover {
       background: #00ccff;
-      color: #000;
+      transform: scale(1.1);
+    }
+    .top-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #00ccff;
+      color: #fff;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #000;
+    }
+    .toggle-mode {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: #222;
+      color: #fff;
+      border: none;
       padding: 10px;
       border-radius: 50%;
       cursor: pointer;
+    }
+    .modal {
       display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .modal-content {
+      background: #333;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      width: 90%;
+      max-width: 300px;
+    }
+    .modal-content input, .modal-content textarea {
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+    }
+    .modal-content button {
+      padding: 10px 20px;
+      background: #00ccff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .contact-btn {
+      margin: 20px;
+      padding: 12px 24px;
+      background: #00ccff;
+      border: none;
+      color: #fff;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
 
-<div id="particles-js"></div>
-<div class="custom-cursor"></div>
-<div class="scroll-indicator" id="scrollIndicator"></div>
-
-<div class="typing">عــ𓄌ـمر الفرجانى | Fergany</div>
-
-<a class="btn" href="https://wa.me/201225860308" target="_blank">واتساب</a>
-<a class="btn" href="https://t.me/R_2_77" target="_blank">تليجرام</a>
-<a class="btn" href="https://www.instagram.com/fergany___x" target="_blank">انستجرام</a>
-<a class="btn" href="https://www.facebook.com/share/1F1Vt3uTRF/" target="_blank">فيسبوك</a>
-
-<div class="wave">
-  <svg viewBox="0 0 120 28"><path fill="#00ccff" d="M0 0v8.5C13.8 22.5 41 22.5 60 8.5S106.2-5.5 120 8.5V0z"></path></svg>
+<div id="loader">
+  <div class="spinner"></div>
 </div>
 
-<div id="toTop"><i class="fa fa-arrow-up"></i></div>
+<button class="toggle-mode" onclick="toggleMode()"><i class="fas fa-moon"></i></button>
+
+<h1>عمر الفرجانى</h1>
+
+<div class="social-icons">
+  <a href="https://wa.me/201225860308" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://t.me/R_2_77" target="_blank"><i class="fab fa-telegram"></i></a>
+  <a href="https://www.instagram.com/fergany___x" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.facebook.com/share/1F1Vt3uTRF" target="_blank"><i class="fab fa-facebook-f"></i></a>
+</div>
+
+<button class="contact-btn" onclick="openModal()">تواصل معى</button>
+
+<button class="top-btn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+<div id="contactModal" class="modal">
+  <div class="modal-content">
+    <h3>راسلنى</h3>
+    <input type="text" placeholder="اسمك">
+    <input type="email" placeholder="البريد">
+    <textarea rows="3" placeholder="رسالتك"></textarea>
+    <button onclick="closeModal()">إرسال</button>
+  </div>
+</div>
 
 <script>
-particlesJS("particles-js", {
-  "particles":{"number":{"value":50},"color":{"value":"#00ccff"},"shape":{"type":"circle"},
-  "opacity":{"value":0.5},"size":{"value":4},"line_linked":{"enable":true,"distance":150,"color":"#00ccff","opacity":0.4,"width":1},
-  "move":{"enable":true,"speed":3}},
-  "interactivity":{"events":{"onhover":{"enable":true,"mode":"repulse"}}}});
+  // Loader hide
+  window.addEventListener("load", () => {
+    document.getElementById("loader").style.display = "none";
+  });
 
-const cursor = document.querySelector('.custom-cursor');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.pageX + 'px';
-  cursor.style.top = e.pageY + 'px';
-});
+  // Dark / Light Mode Toggle
+  function toggleMode() {
+    document.body.classList.toggle("dark-mode");
+  }
 
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  document.getElementById("scrollIndicator").style.width = scrolled + "%";
-  document.getElementById("toTop").style.display = (winScroll > 100) ? "block" : "none";
-};
+  // Scroll to top
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-document.getElementById("toTop").onclick = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
+  // Contact Modal
+  function openModal() {
+    document.getElementById("contactModal").style.display = "flex";
+  }
+  function closeModal() {
+    document.getElementById("contactModal").style.display = "none";
+  }
 </script>
 
 </body>
